@@ -184,8 +184,7 @@ export async function transformVue(
   const template = parsedVue.descriptor.template
   let expressionCode = ''
   if (template?.ast) {
-    // @ts-expect-error different library
-    traverseVueAst(template.ast!, {
+    traverseVueAst(template.ast as any, {
       enter(node) {
         if (isVueSimpleExpressionNode(node) && !node.isStatic) {
           const ForOfOrInRE = /\s+(of|in)\s+/
